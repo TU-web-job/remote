@@ -29,19 +29,19 @@ public class UserConfigForm {
 	
 	@NotBlank
 	@Size(min = 8, max = 16)
-	@Pattern(regexp = "^ [a-zA-Z0-9]+$")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$")
 	private String password;
 	
 	@NotBlank
 	@Size(min = 8, max = 16)
-	@Pattern(regexp = "^ [a-zA-Z0-9]+$")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$")
 	private String confirmPassword;
 	
 	public UserConfigForm toForm() {
 		return UserConfigForm.builder().name(this.name).email(this.email).password(this.password).confirmPassword(this.confirmPassword).build();
 	}
 	
-	public UserConfigForm toDTO(UserDTO dto) {
-		return UserConfigForm.builder().name(dto.getName()).email(dto.getEmail()).password(dto.getPassword()).build();
+	public UserDTO toDTO() {
+		return UserDTO.builder().name(this.name).email(this.email).password(this.password).confirmPassword(this.confirmPassword).build();
 	}
 }

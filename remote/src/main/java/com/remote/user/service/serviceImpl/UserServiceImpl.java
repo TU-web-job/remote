@@ -27,13 +27,15 @@ public class UserServiceImpl implements UserService{
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
 		entity.setPassword(dto.getPassword());
+		
+		userMapper.confirmUser(entity);
 	}
 	
 	@Override
 	public UserDTO findUser(UserDTO dto) throws Exception {
 		String email = dto.getEmail();
 		String password = dto.getPassword();
-		UserDTO user = userMapper.loginUser(email, password);
+		UserEntity user = userMapper.loginUser(email, password);
 		if(user.equals(null)) {
 			throw new NoSuchElementException("メールアドレス　または　パスワードが違います。");
 		}

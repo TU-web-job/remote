@@ -2,12 +2,12 @@ package com.remote.user.repository;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.remote.user.dto.UserDTO;
+import com.remote.user.entity.UserEntity;
 
 @Mapper
 public interface UserMapper {
 
-	public int confirmUser();
+	void confirmUser(UserEntity entity);
 	
-	public UserDTO loginUser(String email, String password);
+	public UserEntity loginUser(String email, String password);
 }
