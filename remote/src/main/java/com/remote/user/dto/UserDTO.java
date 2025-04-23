@@ -17,7 +17,10 @@ public class UserDTO {
 	
 	private String password;
 	
+	private String confirmPassword;
+	
 	public UserDTO toDTO() {
-		return UserDTO.builder().name(this.name).email(this.email).password(this.password).build();
+		return UserDTO.builder().name(this.name).email(this.email).password(this.password)
+				.confirmPassword(this.confirmPassword).build();
 	}
 }
