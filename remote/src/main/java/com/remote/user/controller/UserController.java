@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.remote.user.dto.UserDTO;
 import com.remote.user.form.UserConfigForm;
 import com.remote.user.form.UserLoginForm;
+import com.remote.user.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,18 +31,35 @@ public class UserController {
 	
 	private static final String Result = USER + "/result";
 	
+	private final UserService userService;
+	
 	@GetMapping
 	public String init() {
 		return Init;
+	}
+	
+	@PostMapping(params = "signup")
+	public String getSignup(@ModelAttribute("userConfig") UserConfigForm form, Model model) {
+		model.addAttribute("userConfig", form);
+		return Signup;
+	}
+	
+	@PostMapping(params = "login")
+	public String getLogin(@ModelAttribute("userLogin") @Valid UserLoginForm form,Model model) {
+		model.addAttribute("userLogin", form);
+		return Login;
 	}
 	
 	@PostMapping(params = "btn_signup")
 	public String signup(@ModelAttribute("userConfig") @Valid UserConfigForm form,BindingResult result ,Model model) {
 		if(!result.hasErrors()) {
 			try {
-				model.addAttribute("userConfig", form);
+				UserDTO dto = form.toDTO();
+				userService.signup(dto);
+				model.addAttribute("userConfig",form);
 			}catch(Exception e) {
 				model.addAttribute("errors", e.getMessage());
+				e.printStackTrace();
 				return Signup;
 			}
 			return Result;
@@ -52,9 +71,11 @@ public class UserController {
 	public String login(@ModelAttribute("userLogin") @Valid UserLoginForm form, BindingResult result, Model model) {
 		if(!result.hasErrors()) {
 			try {
-				model.addAttribute("userLogin", form);
+				UserDTO dto = userService.findUser(form.toDTO());
+				model.addAttribute("userLogin", dto);
 			}catch(Exception e) {
 				model.addAttribute("errors", e.getMessage());
+				e.printStackTrace();
 				return Login;
 			}
 			return Result;

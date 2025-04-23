@@ -2,15 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.remote.repository.UserMapper">
-  	<insert id="confirmUser">
-  	insert to users(
-  	id,
+  <mapper namespace="com.remote.user.repository.UserMapper">
+  	<insert id="confirmUser" parameterType="com.remote.user.entity.UserEntity" useGeneratedKeys="true" keyProperty="id">
+  	insert INTO users(
   	name,
   	email,
   	password
   	) VALUES (
-  	#{id},
   	#{name},
   	#{email},
   	#{password}
