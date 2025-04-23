@@ -1,7 +1,5 @@
 package com.remote.user.repository;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.remote.user.dto.UserDTO;
@@ -11,5 +9,5 @@ public interface UserMapper {
 
 	public int confirmUser();
 	
-	public List<UserDTO> selectUser(String email);
+	public UserDTO loginUser(String email, String password);
 }

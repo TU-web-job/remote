@@ -38,7 +38,7 @@ public class UserConfigForm {
 	private String confirmPassword;
 	
 	public UserConfigForm toForm() {
-		return UserConfigForm.builder().name(this.name).email(this.email).password(this.password).build();
+		return UserConfigForm.builder().name(this.name).email(this.email).password(this.password).confirmPassword(this.confirmPassword).build();
 	}
 	
 	public UserConfigForm toDTO(UserDTO dto) {

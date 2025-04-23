@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.remote.repository.UserMapper">
+  	<insert id="confirmUser">
+  	insert to users(
+  	id,
+  	name,
+  	email,
+  	password
+  	) VALUES (
+  	#{id},
+  	#{name},
+  	#{email},
+  	#{password}
+  	)
+  	</insert>
+  	
+  	<select id="loginUser" resultType="com.remote.user.entity.UserEntity">
+  	select name, email, password from users 
+  	where email = #{email} and password = #{password}
+  	</select>
+  </mapper>
