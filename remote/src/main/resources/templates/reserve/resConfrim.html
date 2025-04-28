@@ -4,18 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet">
-<title>Init</title>
+<title>resConfirm</title>
 </head>
 <body>
-<h2>予約画面</h2>
-<!-- 予約登録 -->
+<h2予約登録></h2>
 <form method="post" th:action="@{/reserve}" th:object="${resConForm}">
-	<button type="submit" class="btn btn-primary" name="resConfirm">予約登録へ</button>
-</form>
-
-<!-- 予約確認 -->
-<form method="post" th:action="@{/reserve}" th:object="resFinForm">
-	<button type="submit" class="btn btn-success" name="resFind">予約確認へ</button>
+	<table>
+		<!-- 名前とメールはログインしてテキスト表示する-->
+		<tr>
+			<th>名前 : </th>
+			<td></td>
+		</tr>
+		<tr>
+			<th>メールアドレス : </th>
+			<td></td>
+		</tr>
+		<tr>
+			<th>予約日 : </th>
+			<td><input>
+			<div></div></td>
+		</tr>
+		<tr>
+			<th>メモ : </th>
+			<td><input>
+			<div></div></td>
+		</tr>
+	</table>
 </form>
 </body>
 </html>
