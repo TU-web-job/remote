@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.remote.reserve.repository.ReserveMapper">
+  	<insert id="confirmReserve" keyProperty="email" parameterType="com.remote.reserve.entity.ReserveEntity">
+  	insert INTO reserve(
+  	reserveDate,
+  	name,
+  	email,
+  	memo
+  	) VALUES (
+  	#{reserveDate},
+  	#{name},
+  	#{email},
+  	#{memo}
+  	)
+  	</insert>
+  	<select id="findReserve" resultType="com.remote.reserve.entity.ReserveEntity">
+  	SELECT r.reserveDate　AS reserveDate, u.name AS name, u.email AS email, r.memo AS memo from reserve r
+  	INNER JOIN users u ON u.email = r.email
+  	WHERE u.email = #{email}
+  	</select>
+  </mapper>

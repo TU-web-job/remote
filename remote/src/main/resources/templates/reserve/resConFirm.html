@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" rel="stylesheet">
+<title>resConfirm</title>
+</head>
+<body>
+<h2予約登録></h2>
+<form method="post" th:action="@{/reserve}" th:object="${resConForm}">
+	<table>
+		<!-- 名前とメールはログインしてテキスト表示する-->
+		<tr>
+			<th>名前 : </th>
+			<td th:text="${loginUser.name}"></td>
+		</tr>
+		<tr>
+			<th>メールアドレス : </th>
+			<td th:text="${loginUser.email}"></td>
+		</tr>
+		<tr>
+			<th>予約日 : </th>
+			<td><input type="date" th:field="*{reserveDate}" value="2025-04-01">
+			<div></div></td>
+		</tr>
+		<tr>
+			<th>メモ : </th>
+			<td><textarea></textarea>
+			<div></div></td>
+		</tr>
+	</table>
+	<button type="submit" name="btn_conResFirm" class="btn btn-primary">予約登録</button>
+</form>
+</body>
+</html>

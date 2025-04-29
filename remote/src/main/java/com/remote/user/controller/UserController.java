@@ -13,6 +13,7 @@ import com.remote.user.form.UserConfigForm;
 import com.remote.user.form.UserLoginForm;
 import com.remote.user.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -79,6 +80,17 @@ public class UserController {
 				return Login;
 			}
 			return Result;
+		}
+		return Login;
+	}
+	
+	@PostMapping(params = "btn_reserve")
+	public String toReserve(@ModelAttribute("userLogin") @Valid UserLoginForm form,HttpSession session, BindingResult result, Model model) throws Exception {
+		if(!result.hasErrors()) {
+			UserDTO dto = userService.findUser(form.toDTO());
+			session.setAttribute("loginUser", dto);
+				System.out.println(session + " : session情報の確認");
+			return "redirect:/reserve";
 		}
 		return Login;
 	}
