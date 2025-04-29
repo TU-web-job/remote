@@ -8,13 +8,18 @@
 </head>
 <body>
 <h2>予約画面</h2>
+<div class="container">
+	<h3>アカウント情報</h3>
+	<p>名前 : <span th:text="${loginUser.name}"></span></p>
+	<p>メールアドレス : <span th:text="${loginUser.email}"></span></p>
+</div>
 <!-- 予約登録 -->
 <form method="post" th:action="@{/reserve}" th:object="${resConForm}">
-	<button type="submit" class="btn btn-primary" name="resConfirm">予約登録へ</button>
+	<button type="submit" class="btn btn-primary" name="resConFirm">予約登録へ</button>
 </form>
 
 <!-- 予約確認 -->
-<form method="post" th:action="@{/reserve}" th:object="resFinForm">
+<form method="post" th:action="@{/reserve}" th:object="${resFinForm}">
 	<button type="submit" class="btn btn-success" name="resFind">予約確認へ</button>
 </form>
 </body>

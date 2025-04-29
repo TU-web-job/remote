@@ -1,5 +1,10 @@
 package com.remote.reserve.service;
 
-public interface ReserveService {
+import com.remote.reserve.dto.ReserveDTO;
 
+public interface ReserveService {
+	
+	public void reserveCon(String name, String email, ReserveDTO dto);
+
+	public ReserveDTO findReserve(String name,ReserveDTO dto);
 }

@@ -13,23 +13,24 @@
 		<!-- 名前とメールはログインしてテキスト表示する-->
 		<tr>
 			<th>名前 : </th>
-			<td></td>
+			<td th:text="${loginUser.name}"></td>
 		</tr>
 		<tr>
 			<th>メールアドレス : </th>
-			<td></td>
+			<td th:text="${loginUser.email}"></td>
 		</tr>
 		<tr>
 			<th>予約日 : </th>
-			<td><input>
+			<td><input type="date" th:field="*{reserveDate}" value="2025-04-01">
 			<div></div></td>
 		</tr>
 		<tr>
 			<th>メモ : </th>
-			<td><input>
+			<td><textarea></textarea>
 			<div></div></td>
 		</tr>
 	</table>
+	<button type="submit" name="btn_conResFirm" class="btn btn-primary">予約登録</button>
 </form>
 </body>
 </html>

@@ -85,17 +85,12 @@ public class UserController {
 	}
 	
 	@PostMapping(params = "btn_reserve")
-	public String toReserve(@ModelAttribute("userLogin") @Valid UserLoginForm form,HttpSession session, BindingResult result, Model model) {
+	public String toReserve(@ModelAttribute("userLogin") @Valid UserLoginForm form,HttpSession session, BindingResult result, Model model) throws Exception {
 		if(!result.hasErrors()) {
-			try {
-				UserDTO dto = userService.findUser(form.toDTO());
-				session.setAttribute("loginUser", dto);
-				}catch(Exception e) {
-				model.addAttribute("errors", e.getMessage());
-				e.printStackTrace();
-				return Login;
-			}
-			return "redirect:/reserve/init";
+			UserDTO dto = userService.findUser(form.toDTO());
+			session.setAttribute("loginUser", dto);
+				System.out.println(session + " : session情報の確認");
+			return "redirect:/reserve";
 		}
 		return Login;
 	}

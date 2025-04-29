@@ -1,6 +1,8 @@
 package com.remote.reserve.form;
 
-import java.util.Date;
+import java.time.LocalDate;
+
+import com.remote.reserve.dto.ReserveDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
@@ -11,7 +13,7 @@ import lombok.Data;
 public class ResConfirmForm {
 
 	
-	private Date reserveDate;
+	private LocalDate reserveDate;
 	
 	@NotBlank
 	private String name;
@@ -20,4 +22,8 @@ public class ResConfirmForm {
 	private String email;
 	
 	private String memo;
+	
+	public ReserveDTO toDTO() {
+		return ReserveDTO.builder().name(this.name).reserveDate(this.reserveDate).email(this.email).memo(this.memo).build();
+	}
 }

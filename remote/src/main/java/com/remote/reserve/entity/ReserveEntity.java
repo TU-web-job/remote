@@ -1,6 +1,6 @@
 package com.remote.reserve.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ReserveEntity {
 
-	private Date reserveDate;
+	private LocalDate reserveDate;
 	
 	private String name;
 	
